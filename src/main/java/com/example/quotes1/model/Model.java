@@ -82,7 +82,10 @@ public class Model {
 //        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
 //        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
 //            String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
-            String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;initial catalog=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//            String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;initial catalog=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+            String url = "jdbc:sqlserver://192.168.1.1\\SQLEXPRESS;initial catalog=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером 192.168.1.1, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+
+            //192.168.1.1
             conn = DriverManager.getConnection(url);
             if (conn != null) {
                 DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
