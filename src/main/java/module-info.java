@@ -1,6 +1,7 @@
 module com.example.quotes1 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.example.quotes1 to javafx.fxml;
