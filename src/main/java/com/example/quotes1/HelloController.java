@@ -30,7 +30,8 @@ public class HelloController {
 
     public void initialize() throws IOException, SQLException {
         model.readFromWebListOfString(urlFirst+TickersQuotesSimple.SBER.toString()+url_Day_Interval_2010);
-        model.insertCandleToDB();
+//        model.insertCandleToDB();
+        model.connectToDB_Test();
     }
 
 

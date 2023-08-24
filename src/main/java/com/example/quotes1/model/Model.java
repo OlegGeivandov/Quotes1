@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.*;
+//import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 public class Model {
 //    ArrayList<String> listStringFromStockExchange = new ArrayList<>();
@@ -48,8 +49,12 @@ public class Model {
 //        String url = "jdbc:sqlserver://192.168.1.1;databaseName=QuotesBD_23082023;integratedSecurity=true;";
 //        String url = "jdbc:sqlserver://localhost\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;";
 //        String url = "jdbc:sqlserver://localhost\\\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;";
-        String url = "jdbc:sqlserver://192.168.56.1\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;";
+//        String url = "jdbc:sqlserver://192.168.56.1\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;";
+//        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;integratedSecurity=true;";
+//        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;";
+        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;";
 
+        //"jdbc:sqlserver://localhost\\sqlexpress";
 
 
         try {
@@ -61,6 +66,45 @@ public class Model {
             return null;
         }
     }
+
+    public void connectToDB_Test() {
+        Connection conn = null;
+
+        try {
+
+//            String url = "jdbc:sqlserver://localhost\\localhost;integratedSecurity=true;"; //Соединение с сервером localhost, именованным экземпляром localhost, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//            String url = "jdbc:sqlserver://192.168.56.1;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Не удалось установить соединение TCP/IP к серверу 192.168.56.1 по порту 1433. Ошибка: "Connect timed out. Проверьте свойства соединения. Убедитесь, что на сервере запущен экземпляр SQL Server и он принимает TCP/IP-соединения по порту.
+//          String url = "jdbc:sqlserver://localhost;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Не удалось установить соединение TCP/IP к серверу localhost по порту 1433. Ошибка: "Connection refused: no further information. Проверьте свойства соединения. Убедитесь, что на сервере запущен экземпляр SQL Server и он принимает TCP/IP-соединения по порту.
+//          String url = "jdbc:sqlserver://192.168.1.1;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Не удалось установить соединение TCP/IP к серверу 192.168.1.1 по порту 1433. Ошибка: "Connect timed out.
+//             String url = "jdbc:sqlserver://localhost\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером localhost, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//        String url = "jdbc:sqlserver://localhost\\\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером localhost, именованным экземпляром \sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//        String url = "jdbc:sqlserver://192.168.56.1\\sqlexpress;databaseName=QuotesBD_23082023;integratedSecurity=true;"; // Соединение с сервером 192.168.56.1, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//        String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+//            String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;databaseName=QuotesBD_23082023;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+            String url = "jdbc:sqlserver://DESKTOP-2RQ0P4C\\SQLEXPRESS;initial catalog=QuotesBD_23082023;integratedSecurity=true;"; //Соединение с сервером DESKTOP-2RQ0P4C, именованным экземпляром sqlexpress, завершилось ошибкой. Ошибка: "java.net.SocketTimeoutException: Receive timed out".
+            conn = DriverManager.getConnection(url);
+            if (conn != null) {
+                DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+                System.out.println("Driver name: " + dm.getDriverName());
+                System.out.println("Driver version: " + dm.getDriverVersion());
+                System.out.println("Product name: " + dm.getDatabaseProductName());
+                System.out.println("Product version: " + dm.getDatabaseProductVersion());
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 
     public void insertCandleToDB() throws SQLException {
         String insertSql = "INSERT INTO QuotesBD_23082023.QUOTESDAY (ticker, timing, open, close, high, low, value, volume, begin, end) VALUES "
