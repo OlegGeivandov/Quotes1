@@ -12,6 +12,9 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
+    public HelloController() throws IOException, SQLException {
+    }
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -21,18 +24,28 @@ public class HelloController {
 
 
     Model model= new Model();
-    TickersQuotesSimple tickersSimple;
-    String urlFirst = "https://iss.moex.com/iss/engines/stock/markets/shares/securities/";
-    String url_Day_Interval_2010= "/candles.csv?from=2010-01-01&till=2011-12-31&interval=24";
-    String url_Day_Interval_2012= "/candles.json?from=2012-01-01&till=2013-12-31&interval=24";
+
+
+
 
 
 
     public void initialize() throws IOException, SQLException {
-        model.readFromWebListOfString(urlFirst+TickersQuotesSimple.SBER.toString()+url_Day_Interval_2010);
-//        model.insertCandleToDB();
-        model.connectToDB_Test();
-    }
+
+
+
+
+        }
+
+
+//        model.readFromWebListOfString("https://iss.moex.com/iss/engines/stock/markets/shares/securities/SNGS/candles.json?from=2010-01-01&till=2010-01-13&interval=24");
+
+//        for (String url : model.urlStringList) {
+//            model.insertCandleToDB(url);
+    //}
+
+
+
 
 
 }
